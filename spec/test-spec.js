@@ -1,21 +1,12 @@
-const CompareNumber = require('../src/models/compareNumber');
+const Test = require('../src/models/test');
 
-describe('guess number',()=>{
-  it('build ×A×B',()=>{
-    const expected = '4A0B';
-    const compareNumber = new CompareNumber('1234','1234');
-    expect(compareNumber.build()).toEqual(expected);
+describe('test', ()=> {
+  beforeEach(()=> {
+    spyOn(console, 'log');
   })
-
-  it('build ×A×B',()=>{
-    const expected = '0A4B';
-    const compareNumber = new CompareNumber('1234','4321');
-    expect(compareNumber.build()).toEqual(expected);
-  })
-
-  it('build ×A×B',()=>{
-    const expected = '2A1B';
-    const compareNumber = new CompareNumber('1234','1354');
-    expect(compareNumber.build()).toEqual(expected);
+  it('test', ()=> {
+    Test.test();
+    expect(console.log).toHaveBeenCalledWith(`1234`);
+    expect(console.log).toHaveBeenCalledWith(`2345`);
   })
 })

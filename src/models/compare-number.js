@@ -1,23 +1,13 @@
 class CompareNumber {
 
-  static build(input,result) {
+  static compare(input,result) {
     const inputs = input.split('');
-    const results = result.split('');
+    const answers = result.split('');
 
-    const calculateCorrcectCount = (inputs, results)=> {
-      return inputs
-        .map(input => results[inputs.indexOf(input)] === input ? 1 : 0)
-        .reduce((a, b)=>a + b);
-    }
-    const correctCount = calculateCorrcectCount(inputs, results);
+    const correctCount =inputs.filter(input => inputs.indexOf(input)===answers.indexOf(input)).length;
+    const sameNumberCount = inputs.filter(input => answers.some(a => a === input)).length;
 
-    const calculateErrorCount = (inputs, results, correctCount)=> {
-      const sameCount = inputs
-        .map(input => results.some(b => b === input) ? 1 : 0)
-        .reduce((a, b)=>a + b);
-      return sameCount - correctCount;
-    }
-    const errorCount = calculateErrorCount(inputs, results, correctCount);
+    const errorCount = sameNumberCount-correctCount;
 
     return `${correctCount}A${errorCount}B`;
   }
